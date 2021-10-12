@@ -1,0 +1,40 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Home Page</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
+		<script type="module" src="{{host}}/main.js"></script>
+	</head>
+	<body>
+		<header>
+		<h1>Quiz Time</h1>
+		<a href="/logout">Log out</a>
+		</header>
+		{{#if msg}}
+ 			<aside>
+				<p class="msg">{{msg}}</p>
+			</aside>
+		{{/if}}
+		<main>
+		<p>This is the Quiz section. Users need to have a valid account and be logged in to see it.</p>
+		<p><a href="/">Home page</a></p>
+            
+            <form action='/quiz/{{Equiz.id}}' method="post">
+                
+                    <p>{{Equiz.question}}</p>
+                    <li><label>{{Equiz.answerOne}}<input type="checkbox" name="userAnswer" value="answerOne" /></label></li>
+                    <li><label>{{Equiz.answerTwo}}<input type="checkbox" name="userAnswer" value="answerTwo" /></label></li>
+                    <li><label>{{Equiz.answerThree}}<input type="checkbox" name="userAnswer" value="answerThree" /></label></li>
+                {{#if Equiz.previouspage}}<a href="/quiz/{{Equiz.previouspage}}">Back</a>{{/if}} 
+                {{#if Equiz.nextpage}}<input type="submit" name="submit">{{/if}}
+                {{#unless Equiz.nextpage}}<input type="submit" value="results"> {{/unless}}
+            </form>
+            
+		</main>
+	</body>
+</html>
